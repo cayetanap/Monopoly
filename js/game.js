@@ -1,6 +1,27 @@
 var Game = function(p1) {
-  this.player = p1;
+  this.p1 = p1;
+  this.street1 = new Street(1, "blue", "Antón Martín", 100, 0);
+  this.street2 = new Street(2, "blue", "Alcalá", 100, 0);
+  this.street3 = new Street(3, "grey", "Serrano", 100, 0);
+  this.street4 = new Street(4, "grey", "Velazquez", 100, 0);
+  this.street5 = new Street(5, "grey", "Claudio Coello", 100, 0);
+  this.street6 = new Street(6, "orange", "Lagasca", 100, 0);
+  this.street7 = new Street(7, "orange", "Diego de León", 100, 0);
+  this.street8 = new Street(8, "orange", "Generá Oráa", 100, 0);
+  this.street9 = new Street(9, "gren", "Maldonado", 100, 0);
+  this.street10 = new Street(10, "green", "Conde Peñalver", 100, 0);
+  this.street11 = new Street(11, "yellow", "Lopez de Hoyos", 100, 0);
+  this.street12 = new Street(12, "yellow", "Cruz del Rayo", 100, 0);
+  this.street13 = new Street(13, "yellow", "Príncipe de Vergara", 100, 0);
+  this.street14 = new Street(14, "purple", "Castelló", 100, 0);
+  this.street15 = new Street(15, "purple", "Ayala", 100, 0);
+  this.street16 = new Street(16, "green", "Goya", 100, 0);
+  this.street17 = new Street(17, "green", "Recoletos", 100, 0);
+  this.street18 = new Street(18, "green", "Paseo de la Castellana", 100, 0);
+  this.street19 = new Street(19, "pink", "Fernando el Santo", 100, 0);
+  this.street20 = new Street(20, "pink", "Ponzano", 100, 0);
 }
+
 
 Game.prototype.drawBoard = function() {
   var cells = "";
@@ -57,8 +78,25 @@ Game.prototype.drawPlayers = function() {
 
 Game.prototype.drawDice = function() {
   var dice = $("#outer-16");
+  var that = this;
+
   dice.html('<div id="dice">1</div>')
 
-  // Add click listener to #dice
-  // change #dice html by new random number between 1-6
+  $("#dice").click(function() {
+    var n = Math.floor(Math.random() * 6) + 1
+    $(this).text(n)
+
+    // find p1 number
+    var currentCellNumber = $("#p1").parent().attr("id");
+    // add n to this number
+    var nextCellNumber = parseInt(currentCellNumber) + n;
+    // delete p1
+    $("#p1").remove();
+    // find via Jquery cell with id #7 and add html
+    if (nextCellNumber > 20) {
+      nextCellNumber = nextCellNumber - 20;
+      that.p1.rounds = that.p1.rounds + 1;
+    }
+    $("#" + nextCellNumber).html('<div class="player" id="p1"></div>')
+  })
 }

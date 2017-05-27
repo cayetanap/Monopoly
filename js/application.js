@@ -1,8 +1,10 @@
 // TODO: move code
-var game = new Game("A");
+var p1 = new Player("Player1");
+var game = new Game(p1);
 game.drawBoard();
 game.drawPlayers();
 game.drawDice();
+
 
 
 /*
