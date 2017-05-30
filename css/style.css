@@ -16,7 +16,24 @@
 
 .outer {
   background-color: green;
+}
 
+.street-name {
+  font-size: 15px;
+  height: 40%;
+  width: 90px;
+  z-index:999;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.price {
+  font-size: 10px;
+  height: 30%;
+  width: 90px;
+  z-index:999;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .player {

@@ -10,3 +10,4 @@ game.drawDice();
 /*
 <div class="cell"></div><div class="cell"></div><div class="cell"></div>
 */
+$("#1").css("background-color", 'blue');

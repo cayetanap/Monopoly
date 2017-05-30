@@ -8,7 +8,7 @@ var Game = function(p1) {
   this.street6 = new Street(6, "orange", "Lagasca", 100, 0);
   this.street7 = new Street(7, "orange", "Diego de León", 100, 0);
   this.street8 = new Street(8, "orange", "Generá Oráa", 100, 0);
-  this.street9 = new Street(9, "gren", "Maldonado", 100, 0);
+  this.street9 = new Street(9, "green", "Maldonado", 100, 0);
   this.street10 = new Street(10, "green", "Conde Peñalver", 100, 0);
   this.street11 = new Street(11, "yellow", "Lopez de Hoyos", 100, 0);
   this.street12 = new Street(12, "yellow", "Cruz del Rayo", 100, 0);
@@ -22,9 +22,9 @@ var Game = function(p1) {
   this.street20 = new Street(20, "pink", "Ponzano", 100, 0);
 }
 
-
 Game.prototype.drawBoard = function() {
   var cells = "";
+  var that = this;
 
   var parser = {
     1: 1,
@@ -56,16 +56,18 @@ Game.prototype.drawBoard = function() {
       var parsed = parser["" + k + ""];
 
       if (i === 0 || i === 5 || j === 0 || j === 5) {
-        cells = cells + "<div class='cell outer' id='" + parsed + "'></div>"
+        cells = cells + "<div class='cell outer' id='" + parsed + "' style='background-color:" + this["street" + parsed].color + "'>" +
+          "<div class='street-name'>" + this["street" + parsed].name + " </div>" +
+          "<div class='price'>" + this["street" + parsed].price + "</div>" +
+          "</div>"
       } else {
         cells = cells + "<div class='cell' id='outer-" + k + "'></div>"
       }
-
       k++;
     }
   }
 
-  $("#board").html(cells);
+  $("#board").html(cells)
 }
 
 Game.prototype.drawPlayers = function() {
