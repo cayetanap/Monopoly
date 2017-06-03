@@ -38,13 +38,13 @@
 
 .player {
   width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    margin: 30px auto;
+  height: 20px;
+  border-radius: 100%;
+  margin: 0 auto;
 }
 
 #p1 {
-  background: blue;
+  background: red;
 }
 
 div#outer-16 {

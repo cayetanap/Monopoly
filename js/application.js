@@ -4,10 +4,3 @@ var game = new Game(p1);
 game.drawBoard();
 game.drawPlayers();
 game.drawDice();
-
-
-
-/*
-<div class="cell"></div><div class="cell"></div><div class="cell"></div>
-*/
-$("#1").css("background-color", 'blue');

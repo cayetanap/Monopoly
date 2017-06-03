@@ -59,6 +59,7 @@ Game.prototype.drawBoard = function() {
         cells = cells + "<div class='cell outer' id='" + parsed + "' style='background-color:" + this["street" + parsed].color + "'>" +
           "<div class='street-name'>" + this["street" + parsed].name + " </div>" +
           "<div class='price'>" + this["street" + parsed].price + "</div>" +
+          "<div class='player-box'></div>" +
           "</div>"
       } else {
         cells = cells + "<div class='cell' id='outer-" + k + "'></div>"
@@ -72,7 +73,7 @@ Game.prototype.drawBoard = function() {
 
 Game.prototype.drawPlayers = function() {
   // encontrar por jQuery a la cell 1
-  var cell = $("#1");
+  var cell = $("#1 .player-box");
   // añadirle el html del player:
   // <div class="player" id="p1"></div>
   cell.html('<div class="player" id="p1"></div>')
@@ -89,16 +90,39 @@ Game.prototype.drawDice = function() {
     $(this).text(n)
 
     // find p1 number
-    var currentCellNumber = $("#p1").parent().attr("id");
+    var currentCellNumber = $("#p1").parent().parent().attr("id");
     // add n to this number
     var nextCellNumber = parseInt(currentCellNumber) + n;
     // delete p1
     $("#p1").remove();
+
     // find via Jquery cell with id #7 and add html
     if (nextCellNumber > 20) {
       nextCellNumber = nextCellNumber - 20;
       that.p1.rounds = that.p1.rounds + 1;
     }
-    $("#" + nextCellNumber).html('<div class="player" id="p1"></div>')
+    $("#" + nextCellNumber + " .player-box").html('<div class="player" id="p1"></div>');
+
+    // $("#1 .player-box")
+    var street = that["street" + nextCellNumber];
+    var ownerCell = street.owner;
+    // ask to buy street if the street is free and the player has enough money
+
+    if (ownerCell === 0 && that.p1.money >= street.price) {
+      setTimeout(function() {
+        var answerStreet;
+        var questionStreet = confirm("¿Quieres comprar la calle?. Tienes " + that.p1.money + "€. Y esta calle cuesta" + street.price + "€.");
+        if (questionStreet == true) {
+          answerStreet = "¡Has comprado la calle!";
+          that.p1.money = that.p1.money - street.price;
+          street.owner = 1;
+          $("#p1").parent().parent().css("background-color", "aquamarine");
+        } else {
+          answerStreet = "¡No has commprado la calle!";
+        }
+
+        alert(answerStreet);
+      }, 250)
+    }
   })
 }
