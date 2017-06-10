@@ -89,7 +89,7 @@ Game.prototype.drawDice = function() {
   var that = this;
 
   dice.html('<div id="dice">1</div>')
-  $("#dice").append("<img id='theImg' src='images/1.jpg' width = 50px />");
+  $("#dice").append("<img id='theImg' src='./images/1.jpg' width = 50px />");
   $("#dice").click(function() {
     var p = that["p" + that.turn];
 
