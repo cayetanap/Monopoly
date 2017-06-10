@@ -89,13 +89,13 @@ Game.prototype.drawDice = function() {
   var that = this;
 
   dice.html('<div id="dice">1</div>')
-  $("#dice").append("<img id='theImg' src='./images/1.jpg' width = 50px />");
+  $("#dice").append("<img id='theImg' src='images/1.JPG' width = 50px />");
   $("#dice").click(function() {
     var p = that["p" + that.turn];
 
     var n = Math.floor(Math.random() * 6) + 1;
     $(this).text(n);
-    $("#dice").append("<img id='theImg' src='images/" + n + ".jpg' width = 50px />");
+    $("#dice").append("<img id='theImg' src='images/" + n + ".JPG' width = 50px />");
 
     // find p number
     var currentCellNumber = $("#p" + that.turn).parent().parent().attr("id");
